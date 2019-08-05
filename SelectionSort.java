@@ -1,77 +1,26 @@
-import java.util.*;
+import java.util.Arrays;
 
-public class SelectionSort {
-
-    public static void main(String args[]) {
-        int[] lst = {4, 9, 7, 1, 3, 6, 5};
-        selectionSort(lst);
+public class SelectionSort{
+    
+    public static void main(String[] args){
+        int[] lst = {64,25,12,22,11};
+        sort(lst);
     }
 
-    public static void selectionSort(int[] lst) {
+    public static void sort(int[] lst){
         int n = lst.length;
-        for(int i = 0; i < lst.length; i++) {
-            int [] currentSlice = getCurrentSlice(lst, i, n);
-            //int[] currentSlice = Arrays.copyOfRange(lst, i, n);
-            int min = getMinValue(currentSlice);
-            if (lst[i] != min) {
-                int temp = lst[i];
-                int prevIndex = indexOf(lst, min);
-                lst[i] = min;
-                lst[prevIndex] = temp;
-            }
-        }
-        System.out.println(Arrays.toString(lst));
-    }
 
-    public static int[] getCurrentSlice(int[] lst, int i, int n){
-        int c = 0;
-        int[] currentSlice = new int[n-i];
-        for(int j = i; j < n; j++){
-            currentSlice[c] = lst[j];
-            c++;
-        }
-        return currentSlice;
-    }
-
-
-    public static int indexOf(int[] lst, int x) {
-        for (int i = 0; i < lst.length; i++) {
-            if (lst[i] == x) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public static int getMinValue(int[] lst) {
-        int n = lst.length;
-        int minValue = lst[0];
-        for (int i = 0; i < n; i++) {
-            if (lst[i] < minValue) {
-                minValue = lst[i];
-            }
-        }
-        return minValue;
-    }
-}
-/*
-    public static void selectionSort(int[] lst) {
-        // get the length
-        int n = lst.length;
-        for (int i = 0; i < n; i++) {
-            int index = 0;
-            int smallest = lst[i];
-            for (int j = i; j < n; j++) {
-                if (lst[j] < smallest) {
-                    smallest = lst[j];
-                    index = j;
+        for(int i = 0; i < n; i++){
+            int minIndex = i;
+            for(int j = i+1; j < n; j++){
+                if(lst[j] < lst[minIndex]){
+                    minIndex = j;
                 }
-                int temp = lst[i];
-                lst[i] = smallest;
-                lst[index] = temp;
             }
+            int temp = lst[i];
+            lst[i] = lst[minIndex];
+            lst[minIndex] = temp;
         }
-        System.out.println(Arrays.toString(lst));
+    System.out.println(Arrays.toString(lst));
     }
-
-*/
+} 
