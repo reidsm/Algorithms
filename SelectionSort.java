@@ -5,22 +5,32 @@ public class SelectionSort {
     public static void main(String args[]) {
         int[] lst = {4, 9, 7, 1, 3, 6, 5};
         selectionSort(lst);
-        int indexTest = indexOf(lst, 4);
-        //System.out.println(indexTest);
-        //System.out.println(lst[0]);
-        //selectionSort(lst);
     }
 
     public static void selectionSort(int[] lst) {
         int n = lst.length;
-        int min = getMinValue(lst);
-        if(lst[0] != min){
-            int temp = lst[0];
-            int prevIndex = indexOf(lst, min);
-            lst[0] = min;
-            lst[prevIndex] = temp;
+        for(int i = 0; i < lst.length; i++) {
+            int [] currentSlice = getCurrentSlice(lst, i, n);
+            //int[] currentSlice = Arrays.copyOfRange(lst, i, n);
+            int min = getMinValue(currentSlice);
+            if (lst[i] != min) {
+                int temp = lst[i];
+                int prevIndex = indexOf(lst, min);
+                lst[i] = min;
+                lst[prevIndex] = temp;
+            }
         }
         System.out.println(Arrays.toString(lst));
+    }
+
+    public static int[] getCurrentSlice(int[] lst, int i, int n){
+        int c = 0;
+        int[] currentSlice = new int[n-i];
+        for(int j = i; j < n; j++){
+            currentSlice[c] = lst[j];
+            c++;
+        }
+        return currentSlice;
     }
 
 
