@@ -22,11 +22,12 @@ public class MergeSort {
             int m = (firstIndex+lastIndex)/2;
 
             // Sort first and second halves
-            sort(lst, firstIndex, m);
+            sort(lst, firstIndex, m); //sort the entire first half of this array before slicing and sorting the second half
             sort(lst, m+1, lastIndex);
 
             // Merge the sorted halves
-            merge(lst, firstIndex, m, lastIndex);
+            merge(lst, firstIndex, m, lastIndex); //first call will be 4 and 4 for an 8 array list, the next call will be 2/2/2/2, 3 calls will be 1/1/1/1/1/1/1/
+            //1. split into 2, 2. split into 2 again, 3. split into 2 again
         }
     }
 
