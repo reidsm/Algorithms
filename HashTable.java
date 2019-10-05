@@ -4,8 +4,8 @@ public class HashTable {
 
 
     public static void main(String[] args) {
-        int[] nums = {22, 21, 34, 87, 98, 49, 10, 7, 15};
-        int target = 43;
+        int[] nums = {3, 2, 4};
+        int target = 6;
 
         int[] solution = mapFunction(nums, target);
     }
@@ -16,12 +16,13 @@ public class HashTable {
         for(int i = 0; i < nums.length; i++) {
             map.put(nums[i], i);
         }
+        //System.out.println(map);
         for(int j = 0; j < nums.length; j++) {
             int complement = target - nums[j];
 
             //System.out.println("" + target + "-" + nums[j] + " = " + complement);
 
-            if(map.containsKey(complement)) {
+            if(map.containsKey(complement) && (map.get(complement) != j)) {
                 /*
                 System.out.println("I found a complement for the number at index " + j +". The number at index 2 is "
                         + nums[j] + ". The complement is " + complement);
@@ -33,7 +34,6 @@ public class HashTable {
             }
 
         }
-        //System.out.println(map);
         return null;
     }
 }
